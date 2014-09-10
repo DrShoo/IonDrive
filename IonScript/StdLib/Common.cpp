@@ -1,7 +1,9 @@
 #include "stdafx.h"
 
+#include "../Defs.h"
 #include "../Expression.h"
-#include "../VirtualMachine.h"
+#include "../CallContext.h"
+#include "../RuntimeError.h"
 
 #include "Common.h"
 

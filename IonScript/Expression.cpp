@@ -84,6 +84,19 @@ namespace ionscript
 
     }
 
+    void Expression::Assign(const Expression &rhs)
+    {
+        _type = rhs._type;
+        _integer = rhs._integer;
+        _real = rhs._real;
+        _boolean = rhs._boolean;
+        _string = rhs._string;
+        _symbol = rhs._symbol;
+        _list = rhs._list;
+        _nativeMacro = rhs._nativeMacro;
+        _sourceLocation = rhs._sourceLocation;
+    }
+
     Expression::SourceLocationSptr Expression::GetSourceLocation() const
     {
         return _sourceLocation;

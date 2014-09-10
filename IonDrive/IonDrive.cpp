@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "version.h"
+#include "BoundState.h"
 
 namespace logger = common::log;
 
@@ -79,6 +80,11 @@ namespace
         assert(!_insVm);
         _insVm = ionscript::VirtualMachine::Create();
         _insVm->Init();
+
+        if (!iondrive::BindState(*_insVm))
+        {
+            return false;
+        }
 
         logger::Info(L"loading basic configuration file '%s'...", CFG_FILENAME);
 

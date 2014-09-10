@@ -63,6 +63,9 @@
     <ClInclude Include="LibraryContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RuntimeError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="StdLib\Init.cpp">
       <Filter>Source Files\StdLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RuntimeError.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

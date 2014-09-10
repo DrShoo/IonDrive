@@ -1,23 +1,5 @@
 #pragma once
 
-#if !defined(OUT)
-    #define OUT
-#endif
-
-#if !defined(INOUT)
-    #define INOUT
-#endif
-
-namespace common
+namespace ionscript
 {
-
-    inline bool IsDebug()
-    {
-#if defined(_DEBUG)
-        return true;
-#else
-        return false;
-#endif
-    }
-
 }

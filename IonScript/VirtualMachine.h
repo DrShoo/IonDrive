@@ -1,43 +1,14 @@
 #pragma once
 
-#include "CallContext.h"
 #include "LibraryContext.h"
+#include "CallContext.h"
 
 namespace ionscript
 {
-    typedef std::shared_ptr<class ExecutionFrame> ExecutionFrameSptr;
-    typedef std::unique_ptr<class Parser> ParserUptr;
-    typedef std::shared_ptr<struct ParserError> ParserErrorSptr;
-    typedef std::list<ParserErrorSptr> ParserErrorList;
-    typedef std::shared_ptr<class VirtualMachine> VirtualMachineSptr;
-
-    enum class RuntimeErrorCode
-    {
-        Invalid,
-        Min,
-
-        NotCallable,
-        UnknownSymbol,
-        InvalidArguments,
-        GeneralError,
-
-        Max
-    };
-
-    struct RuntimeError : boost::noncopyable
-    {
-        RuntimeError(const ExpressionSptr rootExpression, const ExpressionSptr errorExpression, const RuntimeErrorCode code, const std::wstring &customErrorMessage);
-
-        const std::wstring FormatedMessage() const;
-
-        const RuntimeErrorCode Code;
-        const ExpressionSptr RootExpression;
-        const ExpressionSptr ErrorExpression;
-        const std::wstring UserErrorMessage;
-    };
-
-    typedef std::shared_ptr<RuntimeError> RuntimeErrorSptr;
+    typedef std::shared_ptr<struct RuntimeError> RuntimeErrorSptr;
     typedef std::list<RuntimeErrorSptr> RuntimeErrorList;
+
+    typedef std::shared_ptr<class VirtualMachine> VirtualMachineSptr;
 
     class VirtualMachine : 
         public ICallContext,
@@ -63,6 +34,8 @@ namespace ionscript
         #pragma region ILibraryContext 
 
         virtual bool LibraryBindNativeMacro(const std::wstring &id, NativeMacroImpl impl, CallableSignatureSptr signature) override;
+
+        virtual bool LibraryBindNativeVariable(const std::wstring &id, ExpressionSptr value, VariableChangedCallback callback) override;
 
         #pragma endregion
 

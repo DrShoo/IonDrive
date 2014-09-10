@@ -26,7 +26,6 @@ namespace ionscript
     };
 
     typedef std::shared_ptr<ParserError> ParserErrorSptr;
-
     typedef std::list<ParserErrorSptr> ParserErrorList;
 
     class Parser : boost::noncopyable

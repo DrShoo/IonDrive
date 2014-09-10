@@ -39,6 +39,10 @@ namespace ionscript
                     fmt % L"unexpected newline in string";
                     break;
 
+                case LexerErrorCode::UnknownLexeme:
+                    fmt % (boost::wformat(L"unknown lexeme '%s'") % Lx->Text);
+                    break;
+
                 default:
                     assert(false);
                     break;

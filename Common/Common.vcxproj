@@ -76,6 +76,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Defs.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="stdafx.h" />

@@ -2,14 +2,6 @@
 
 namespace ionscript
 {
-
-    typedef std::shared_ptr<class Expression> ExpressionSptr;
-    typedef std::weak_ptr<class Expression> ExpressionWptr;
-    typedef std::deque<ExpressionSptr> ExpressionSptrList;
-    typedef std::deque<ExpressionWptr> ExpressionWptrList;
-
-    typedef std::function<ExpressionSptr(struct ICallContext&, ExpressionSptr)> NativeMacroImpl;
-
     enum class ExpressionType
     {
         Invalid,
@@ -27,6 +19,11 @@ namespace ionscript
 
         Max
     };
+
+    typedef std::shared_ptr<class Expression> ExpressionSptr;
+    typedef std::weak_ptr<class Expression> ExpressionWptr;
+    typedef std::deque<ExpressionSptr> ExpressionSptrList;
+    typedef std::function<ExpressionSptr(struct ICallContext&, ExpressionSptr)> NativeMacroImpl;
 
     class Expression : boost::noncopyable
     {
@@ -58,6 +55,8 @@ namespace ionscript
 
         static ExpressionSptr Symbol(const std::wstring &id);
         
+        void Assign(const Expression &rhs);
+
         SourceLocationSptr GetSourceLocation() const;
 
         void SetSourceLocation(SourceLocationSptr sourceLocation);
@@ -84,7 +83,7 @@ namespace ionscript
 
         ExpressionSptr ListTail() const;
 
-        ExpressionSptr NativeMacroCall(ICallContext &c, const ExpressionSptr params);
+        ExpressionSptr NativeMacroCall(struct ICallContext &c, const ExpressionSptr params);
 
         const std::wstring &SymbolGetId() const;
 

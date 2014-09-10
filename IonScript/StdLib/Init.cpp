@@ -1,9 +1,7 @@
 #include "stdafx.h"
 
 #include "../CallableSignature.h"
-#include "../Lexer.h"
-#include "../Parser.h"
-#include "../VirtualMachine.h"
+#include "../LibraryContext.h"
 
 #include "Init.h"
 #include "Common.h"
