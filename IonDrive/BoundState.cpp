@@ -10,6 +10,8 @@ namespace
 
     ExpressionSptr _logVerbosity = Expression::Symbol(L"trace");
 
+    ExpressionSptr _videoMode = Expression::List();
+
 }
 
 namespace iondrive
@@ -20,8 +22,17 @@ namespace iondrive
     {
         logger::Info(L"binding IonDrive state to script...");
 
-        return c.LibraryBindNativeVariable(L"log-verbosity", _logVerbosity, [](ExpressionSptr){
-        });
+        auto success = true;
+
+        success = success && 
+            c.LibraryBindNativeVariable(L"log-verbosity", _logVerbosity, [](ExpressionSptr){
+            });
+
+        success = success && 
+            c.LibraryBindNativeVariable(L"video-mode", _videoMode, [](ExpressionSptr){
+            });
+
+        return success;
     }
 
 }
