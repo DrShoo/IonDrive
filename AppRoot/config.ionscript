@@ -1,2 +1,2 @@
-(setq log-verbocity trace)
+(setq log-verbosity trace)
 (setq video-mode 640 480 32 windowed)
