@@ -29,6 +29,7 @@ namespace ionscript
         Symbol,
         String,
         Quote,
+        Integer,
 
         Max
     };
@@ -74,6 +75,8 @@ namespace ionscript
 
         LexemeSptr NewErrorLexeme(const LexerErrorCode error);
         
+        LexemeSptr TryReadNumber();
+
         LexemeSptr TryReadSimple();
 
         LexemeSptr TryReadString();

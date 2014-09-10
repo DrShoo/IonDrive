@@ -114,7 +114,8 @@ namespace ionscript
         const std::function<LexemeSptr()> readers[] = {
             [&] { return TryReadSimple(); },
             [&] { return TryReadSymbol(); },
-            [&] { return TryReadString(); }
+            [&] { return TryReadString(); },
+            [&] { return TryReadNumber(); }
         };
 
         for (const auto &reader : readers)
@@ -205,6 +206,35 @@ namespace ionscript
         assert(_beginRow >= 1);
 
         return std::make_shared<Lexeme>(GetLastLexemeText(LexemeType::Error), _beginLine, _beginRow, error);
+    }
+
+    LexemeSptr Lexer::TryReadNumber()
+    {
+        assert(_currentCursor <= _text.length());
+
+        if (!::isdigit(_text[_currentCursor]))
+        {
+            return LexemeSptr();
+        }
+
+        for (;; ++_currentRow, ++_currentCursor)
+        {
+            const auto ch = _text[_currentCursor];
+            if (::iswdigit(ch))
+            {
+                continue;
+            }
+
+            const bool ended = (::iswspace(ch) != 0);
+            if (ended)
+            {
+                break;
+            }
+
+            return NewErrorLexeme(LexerErrorCode::InvalidSymbolCharacter);
+        }
+
+        return NewPlainLexeme(LexemeType::Integer);
     }
 
     LexemeSptr Lexer::TryReadSimple()
