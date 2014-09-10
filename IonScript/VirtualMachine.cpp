@@ -123,15 +123,31 @@ namespace ionscript
 
     bool VirtualMachine::CallSetSymbolValue(const std::wstring &id, ExpressionSptr value)
     {
-        id;
-        value;
-        return false;
+        assert(!id.empty());
+        
+        if (!EvaluateSymbol(id))
+        {
+            return false;
+        }
+
+        if (_stack.top()->UpdateSymbol(id, value))
+        {
+            return true;
+        }
+
+        const auto hasGlobalFrameOnly = (_stack.size() == 1);
+        if (hasGlobalFrameOnly)
+        {
+            return false;
+        }
+
+        return _globalFrame->UpdateSymbol(id, value);
     }
 
     bool VirtualMachine::CallSymbolExists(const std::wstring &id)
     {
-        id;
-        return false;
+        assert(!id.empty());
+        return (bool)EvaluateSymbol(id);
     }
 
     #pragma endregion
@@ -150,7 +166,10 @@ namespace ionscript
             signature ? L" (with signature)" : L"");
 
         auto expr = Expression::NativeMacro(impl);
-        _globalFrame->SetSymbol(id, expr);
+        if (!_globalFrame->AddSymbol(id, expr))
+        {
+            return false;
+        }
 
         return true;
     }

@@ -39,7 +39,19 @@ namespace ionscript
                 return ExpressionSptr();
             }
 
-            return ExpressionSptr();
+            auto value = params->ListTail();
+            if (value->ListGetSize() == 1)
+            {
+                value = value->ListHead();
+            }
+
+            if (!c.CallSetSymbolValue(id, value))
+            {
+                c.CallRuntimeError(RuntimeErrorCode::InvalidArguments, L"symbol '%s' can't be set for unknown reason", id);
+                return ExpressionSptr();
+            }
+
+            return toSet;
         }
 
     }

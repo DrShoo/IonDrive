@@ -18,12 +18,35 @@ namespace ionscript
         return ExpressionSptr();
     }
 
-    void ExecutionFrame::SetSymbol(const std::wstring &id, ExpressionSptr value)
+    bool ExecutionFrame::AddSymbol(const std::wstring &id, ExpressionSptr value)
     {
         assert(!id.empty());
         assert(value);
 
+        if (_symbols.count(id) > 0)
+        {
+            return false;
+        }
+
         _symbols[id] = value;
+
+        return true;
+    }
+
+    bool ExecutionFrame::UpdateSymbol(const std::wstring &id, ExpressionSptr value)
+    {
+        assert(!id.empty());
+        assert(value);
+
+        auto i = _symbols.find(id);
+        if (i == _symbols.end())
+        {
+            return false; 
+        }
+
+        i->second = value;
+
+        return true;
     }
 
 }
