@@ -134,13 +134,13 @@ namespace ionscript
         _parser.reset(new Parser);
         _parser->Init(filename, text);
 
-        ExpressionSptr expr;
-        while (expr = _parser->Next())
+        ExpressionSptr lastResult;
+        while (ExpressionSptr expr = _parser->Next())
         {
             _currentRootExpression = expr;
 
-            expr = EvaluateExpression(expr);
-            if (!expr)
+            lastResult = EvaluateExpression(expr);
+            if (!lastResult)
             {
                 assert(!_runtimeErrors.empty());
                 break;
@@ -150,11 +150,11 @@ namespace ionscript
         _parserErrors = _parser->GetErrors();
         if (_parserErrors.empty() && _runtimeErrors.empty())
         {
-            assert(expr);
-            return expr;
+            assert(lastResult);
+            return lastResult;
         }
 
-        assert(!expr);
+        assert(!lastResult);
         return ExpressionSptr();
     }
 
