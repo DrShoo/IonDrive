@@ -53,7 +53,15 @@ namespace ionscript
             return fmt.str();
         }
 
-        return L"";
+        auto fmt = boost::wformat(L"parser error PE%04d: %s\n%s") % (int)PrErrorCode;
+
+        if (PrErrorCode == ParserErrorCode::ExpressionExpected)
+        {
+            fmt % (boost::wformat(L"unexpected lexeme '%s', expected '(' or atom") % Lx->Text);
+            fmt % (boost::wformat(L"in file '%s' at line %d row %d") % Filename % Lx->Line % Lx->Row);
+        }
+
+        return fmt.str();
     }
 
     Parser::Parser()
@@ -134,6 +142,13 @@ namespace ionscript
             if (lx->Type == LexemeType::String)
             {
                 return Expression::String(lx->Text);
+            }
+
+            if (lx->Type == LexemeType::Integer)
+            {
+                return Expression::Integer(boost::lexical_cast<__int64>(
+                    lx->Text
+                ));
             }
 
             if (lx->Type == LexemeType::Symbol)
