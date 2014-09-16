@@ -17,6 +17,30 @@ namespace
 namespace iondrive
 {
 
+    namespace bound
+    {
+
+        const int GetVideoModeWidth()
+        {
+            return _videoMode->ListAt(0)->IntegerGet();
+        }
+
+        const int GetVideoModeHeight()
+        {
+            return _videoMode->ListAt(1)->IntegerGet();
+        }
+
+        const int GetVideoModeDepth()
+        {
+            return _videoMode->ListAt(2)->IntegerGet();
+        }
+
+        const bool GetVideoModeWindowed()
+        {
+            return (_videoMode->ListAt(3)->SymbolGetId() == L"windowed");
+        }
+
+    }
 
     bool BindState(ionscript::ILibraryContext &c)
     {

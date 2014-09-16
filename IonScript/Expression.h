@@ -63,11 +63,15 @@ namespace ionscript
 
         ExpressionType GetType() const;
 
+        int IntegerGet() const;
+
         bool IsCallable() const;
 
         bool IsTerminal() const;
 
         ExpressionSptr MakeCopy() const;
+
+        ExpressionSptr ListAt(const int index) const;
 
         ExpressionSptrList::const_iterator ListBegin() const;
 

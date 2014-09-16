@@ -164,6 +164,14 @@ namespace ionscript
         }
     }
 
+    int Expression::IntegerGet() const
+    {
+        assert(_type == ExpressionType::Integer);
+        assert(_integer);
+
+        return boost::numeric_cast<int>(*_integer);
+    }
+
     bool Expression::IsCallable() const
     {
         switch (GetType())
@@ -240,6 +248,16 @@ namespace ionscript
         return ExpressionSptr();
     }
 
+    ExpressionSptr Expression::ListAt(const int index) const
+    {
+        assert(_type == ExpressionType::List);
+        assert(_list);
+        assert(index >= 0);
+        assert(index < boost::numeric_cast<int>(_list->size()));
+
+        return _list->at(index);
+    }
+
     ExpressionSptrList::const_iterator Expression::ListBegin() const
     {
         assert(_type == ExpressionType::List);
@@ -270,7 +288,7 @@ namespace ionscript
         assert(_type == ExpressionType::List);
         assert(_list);
 
-        return _list->size();
+        return boost::numeric_cast<int>(_list->size());
     }
 
     ExpressionSptr Expression::ListHead() const

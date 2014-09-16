@@ -61,7 +61,19 @@ namespace
 
         logger::Info(L"creating main SDL window...");
 
-        _mainWnd = SDL_CreateWindow("IonDrive "VERSION_PRODUCTSTR, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+        auto flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
+        if (!iondrive::bound::GetVideoModeWindowed())
+        {
+            flags |= SDL_WINDOW_FULLSCREEN;
+        }
+
+        _mainWnd = SDL_CreateWindow(
+            "IonDrive "VERSION_PRODUCTSTR, 
+            SDL_WINDOWPOS_CENTERED, 
+            SDL_WINDOWPOS_CENTERED, 
+            iondrive::bound::GetVideoModeWidth(), 
+            iondrive::bound::GetVideoModeHeight(),
+            flags);
         if (!_mainWnd)
         {
             logger::Fatal(L"main SDL window creation failed");

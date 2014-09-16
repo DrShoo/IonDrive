@@ -4,7 +4,13 @@ namespace iondrive
 {
     namespace bound
     {
-        const std::wstring &GetLogVerbosity();
+        const int GetVideoModeWidth();
+
+        const int GetVideoModeHeight();
+
+        const int GetVideoModeDepth();
+
+        const bool GetVideoModeWindowed();
     }
 
     bool BindState(ionscript::ILibraryContext &c);
