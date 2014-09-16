@@ -46,6 +46,8 @@ namespace
 
     SDL_Window *_mainWnd = nullptr;
 
+    SDL_GLContext _mainGlContext = nullptr;
+
     ionscript::VirtualMachineSptr _insVm;
 
     bool InitSdl()
@@ -59,9 +61,16 @@ namespace
 
         logger::Info(L"SDL initialization succeed");
 
+        logger::Info(L"setting up preliminary OpenGL params...");
+
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+        SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+
         logger::Info(L"creating main SDL window...");
 
-        auto flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
+        auto flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS;
         if (!iondrive::bound::GetVideoModeWindowed())
         {
             flags |= SDL_WINDOW_FULLSCREEN;
@@ -79,6 +88,18 @@ namespace
             logger::Fatal(L"main SDL window creation failed");
             return false;
         }
+
+        logger::Info(L"initializing OpenGL context...");
+
+        _mainGlContext = SDL_GL_CreateContext(_mainWnd);
+        if (!_mainWnd)
+        {
+            logger::Fatal(L"OpenGL context creation failed");
+            return false;
+        }
+
+        SDL_GL_SetSwapInterval(1);
+        glClearColor(0.0, 0.0, 0.0, 1.0);
 
         return true;
     }
@@ -133,6 +154,9 @@ namespace
             {
                 OnEvent(event);
             }
+
+            glClear(GL_COLOR_BUFFER_BIT);
+            SDL_GL_SwapWindow(_mainWnd);
         }
 
         logger::Info(L"exiting from main loop");
@@ -162,6 +186,13 @@ namespace
 
     void Shutdown()
     {
+        logger::Info(L"destroying opengl context (0x%p)", _mainGlContext);
+        if (_mainGlContext)
+        {
+            SDL_GL_DeleteContext(_mainGlContext);
+            _mainGlContext = nullptr;
+        }
+
         logger::Info(L"destroying main window (0x%p)", _mainWnd);
         if (_mainWnd)
         {
