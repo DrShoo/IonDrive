@@ -21,4 +21,14 @@ namespace iondrive
         width;
         height;
     }
+
+    BrowserClient::BrowserClient(RenderHandler *renderHandler)
+    {
+        _renderHandler = renderHandler;
+    }
+
+    CefRefPtr<CefRenderHandler> BrowserClient::GetRenderHandler()
+    {
+        return _renderHandler;
+    }
 }

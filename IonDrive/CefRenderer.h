@@ -14,4 +14,18 @@ namespace iondrive
 
         IMPLEMENT_REFCOUNTING(RenderHandler);
     };
+
+    class BrowserClient : public CefClient
+    {
+    public:
+        BrowserClient(RenderHandler *renderHandler);
+
+        virtual CefRefPtr<CefRenderHandler> GetRenderHandler() override;
+
+    private:
+        CefRefPtr<CefRenderHandler> _renderHandler;
+
+        IMPLEMENT_REFCOUNTING(BrowserClient);
+    };
 }
+

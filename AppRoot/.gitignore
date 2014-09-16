@@ -1,1 +1,3 @@
-iondrive.log
+*.log
+*.exe
+*.dll
