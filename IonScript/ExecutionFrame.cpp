@@ -3,7 +3,7 @@
 #include "Expression.h"
 #include "ExecutionFrame.h"
 
-namespace logger = common::log;
+namespace logger = common::logger;
 
 namespace ionscript
 {

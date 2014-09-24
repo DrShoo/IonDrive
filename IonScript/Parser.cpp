@@ -5,7 +5,7 @@
 #include "Lexer.h"
 #include "Parser.h"
 
-using namespace common::log;
+using namespace common::logger;
 
 namespace ionscript
 {

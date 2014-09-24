@@ -1,5 +1,7 @@
 #pragma once
 
+#include "targetver.h"
+
 #include <Windows.h>
 
 #include <deque>
@@ -12,7 +14,6 @@
 
 #include "../Common/Common.h"
 #include "../IonScript/IonScript.h"
-#include "../IonEngine/IonEngine.h"
 
 #include "../SDL2-2.0.3/include/SDL.h"
 #include "../SDL2-2.0.3/include/SDL_syswm.h"

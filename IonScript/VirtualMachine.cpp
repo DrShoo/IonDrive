@@ -12,7 +12,7 @@
 
 namespace ionscript
 {
-    namespace logger = common::log;
+    namespace logger = common::logger;
 
     VirtualMachineSptr VirtualMachine::Create()
     {

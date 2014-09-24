@@ -3,7 +3,7 @@
 namespace common
 {
 
-    namespace log
+    namespace logger
     {
 
         void Debug(const std::wstring &function, const std::wstring &file, const int line, const std::wstring &msg);

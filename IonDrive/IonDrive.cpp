@@ -1,9 +1,13 @@
 #include "stdafx.h"
 
 #include "version.h"
-#include "BoundState.h"
 
-namespace logger = common::log;
+namespace boundstate = ionengine::scripting::boundstate;
+namespace html = ionengine::html;
+namespace logger = common::logger;
+namespace platform = ionengine::platform;
+namespace scripting = ionengine::scripting;
+namespace video = ionengine::platform::video;
 
 namespace
 {
@@ -44,99 +48,41 @@ namespace
 {
     bool _running = true;
 
-    SDL_Window *_mainWnd = nullptr;
-
-    SDL_GLContext _mainGlContext = nullptr;
-
-    ionscript::VirtualMachineSptr _insVm;
-
-    bool InitSdl()
+    bool InitCef()
     {
-        logger::Info(L"initializing SDL...");
-        if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-        {
-            logger::Fatal(L"SDL initialization failed");
-            return false;
-        }
+        return html::Initialize();
 
-        logger::Info(L"SDL initialization succeed");
+        /*
 
-        logger::Info(L"setting up preliminary OpenGL params...");
+        _renderHandler = new RenderHandler();
+        _renderHandler->Init(_mainWnd);
+        _browserClient = new BrowserClient(_renderHandler);
 
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
-        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-        SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-
-        logger::Info(L"creating main SDL window...");
-
-        auto flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS;
-        if (!iondrive::bound::GetVideoModeWindowed())
-        {
-            flags |= SDL_WINDOW_FULLSCREEN;
-        }
-
-        _mainWnd = SDL_CreateWindow(
-            "IonDrive "VERSION_PRODUCTSTR, 
-            SDL_WINDOWPOS_CENTERED, 
-            SDL_WINDOWPOS_CENTERED, 
-            iondrive::bound::GetVideoModeWidth(), 
-            iondrive::bound::GetVideoModeHeight(),
-            flags);
-        if (!_mainWnd)
-        {
-            logger::Fatal(L"main SDL window creation failed");
-            return false;
-        }
-
-        logger::Info(L"initializing OpenGL context...");
-
-        _mainGlContext = SDL_GL_CreateContext(_mainWnd);
-        if (!_mainWnd)
-        {
-            logger::Fatal(L"OpenGL context creation failed");
-            return false;
-        }
-
-        SDL_GL_SetSwapInterval(1);
-        glClearColor(0.0, 0.0, 0.0, 1.0);
-
-        return true;
+        CefWindowInfo windowInfo;
+        windowInfo.SetAsOffScreen(nullptr);
+        CefBrowserSettings browserSettings;
+        _browser = CefBrowserHost::CreateBrowserSync(windowInfo, _browserClient.get(), "google.com", browserSettings, nullptr);*/
     }
 
-    bool InitIse()
+    bool InitScripting()
     {
-        const std::wstring CFG_FILENAME = L"config.ionscript";
-
-        logger::Info(L"initializing IonScript engine...");
-
-        assert(!_insVm);
-        _insVm = ionscript::VirtualMachine::Create();
-        _insVm->Init();
-
-        if (!iondrive::BindState(*_insVm))
+        if (!scripting::Initialize())
         {
             return false;
         }
 
-        logger::Info(L"loading basic configuration file '%s'...", CFG_FILENAME);
+        const std::wstring CFG_FILENAME = L"config.ionscript";
+        return (bool)scripting::EvaluateFile(CFG_FILENAME);
+    }
 
-        const auto text = common::file::ReadAll(CFG_FILENAME);
+    bool InitVideo()
+    {
+        const auto w = boundstate::GetVideoModeWidth();
+        const auto h = boundstate::GetVideoModeHeight();
+        const auto fullscreen = !boundstate::GetVideoModeWindowed();
 
-        auto expr = _insVm->EvaluateFile(CFG_FILENAME, text);
-        if (!expr)
+        if (!video::Initialize(w, h, fullscreen))
         {
-            logger::Fatal(L"loading config file '%s' was failed", CFG_FILENAME);
-            for (const auto &error : _insVm->GetParserErrors())
-            {
-                logger::Error(L"\n%s", error->FormatedMessage());
-            }
-
-            for (const auto &error : _insVm->GetRuntimeErrors())
-            {
-                logger::Error(L"\n%s", error->FormatedMessage());
-            }
-
             return false;
         }
 
@@ -150,13 +96,12 @@ namespace
         while (_running)
         {
             SDL_Event event = { 0 };
-            while (SDL_PollEvent(&event)) 
+            while (SDL_PollEvent(&event))
             {
                 OnEvent(event);
             }
 
-            glClear(GL_COLOR_BUFFER_BIT);
-            SDL_GL_SwapWindow(_mainWnd);
+            html::MessageLoop();
         }
 
         logger::Info(L"exiting from main loop");
@@ -181,30 +126,21 @@ namespace
             L"***\n\n",
             VERSION_PRODUCTSTR);
 
-        return InitIse() && InitSdl();
+        return platform::Initialize(VERSION_PRODUCTSTR) ||
+               InitScripting() || 
+               InitVideo() || 
+               InitCef();
     }
 
     void Shutdown()
     {
-        logger::Info(L"destroying opengl context (0x%p)", _mainGlContext);
-        if (_mainGlContext)
-        {
-            SDL_GL_DeleteContext(_mainGlContext);
-            _mainGlContext = nullptr;
-        }
+        html::Shutdown();
 
-        logger::Info(L"destroying main window (0x%p)", _mainWnd);
-        if (_mainWnd)
-        {
-            SDL_DestroyWindow(_mainWnd);
-            _mainWnd = nullptr;
-        }
+        video::Shutdown();
 
-        logger::Info(L"destroying SDL");
-        SDL_Quit();
+        scripting::Shutdown();
 
-        logger::Info(L"destroying IonScript engine");
-        _insVm.reset();
+        platform::Shutdown();
 
         logger::Info(L"shutdown completed successfully");
 

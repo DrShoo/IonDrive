@@ -8,7 +8,7 @@
 
 namespace ionscript
 {
-    namespace logger = common::log;
+    namespace logger = common::logger;
 
     namespace stdlib
     {

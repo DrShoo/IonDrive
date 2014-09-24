@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Platform">
+      <UniqueIdentifier>{b7238224-8610-47b1-b3f7-4f67d22a13ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Platform">
+      <UniqueIdentifier>{e9fff43d-8ef3-4258-815f-71b7c75e6625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scripting">
+      <UniqueIdentifier>{7278d9be-4381-4b42-bc8d-6d88c35ecd89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scripting">
+      <UniqueIdentifier>{e523fe8d-cc68-44a0-b25f-9c7b6fd5604b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Html">
+      <UniqueIdentifier>{4b989f41-fc32-4e58-9a85-2b4350422dbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Html">
+      <UniqueIdentifier>{39ddc02e-4f87-419c-9ff6-d17647780fd7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IonEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Video.h">
+      <Filter>Header Files\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Platform.h">
+      <Filter>Header Files\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\BoundVars.h">
+      <Filter>Header Files\Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\Scripting.h">
+      <Filter>Header Files\Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Html\BrowserClient.h">
+      <Filter>Header Files\Html</Filter>
+    </ClInclude>
+    <ClInclude Include="Html\ChomeEmbeddedFramework.h">
+      <Filter>Header Files\Html</Filter>
+    </ClInclude>
+    <ClInclude Include="Html\HtmlRenderer.h">
+      <Filter>Header Files\Html</Filter>
+    </ClInclude>
+    <ClInclude Include="Html\RenderHandler.h">
+      <Filter>Header Files\Html</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Video.cpp">
+      <Filter>Source Files\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Platform.cpp">
+      <Filter>Source Files\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripting\BoundVars.cpp">
+      <Filter>Source Files\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripting\Scripting.cpp">
+      <Filter>Source Files\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Html\BrowserClient.cpp">
+      <Filter>Source Files\Html</Filter>
+    </ClCompile>
+    <ClCompile Include="Html\ChromeEmbeddedFramework.cpp">
+      <Filter>Source Files\Html</Filter>
+    </ClCompile>
+    <ClCompile Include="Html\HtmlRenderer.cpp">
+      <Filter>Source Files\Html</Filter>
+    </ClCompile>
+    <ClCompile Include="Html\RenderHandler.cpp">
+      <Filter>Source Files\Html</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

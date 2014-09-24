@@ -42,7 +42,7 @@ namespace
 namespace common
 {
 
-    namespace log
+    namespace logger
     {
         #define COMMON_LOG_HELPER_BODY(NAME, TAG)   \
             void NAME(const boost::wformat &msg)    \
@@ -173,6 +173,6 @@ namespace
 
         boost::wformat fmt(L"%s - [%s]: %s\n");
         auto localtime = to_simple_wstring(pt::second_clock::local_time().time_of_day());
-        common::log::Write(fmt, localtime, type, msg);
+        common::logger::Write(fmt, localtime, type, msg);
     }
 }
