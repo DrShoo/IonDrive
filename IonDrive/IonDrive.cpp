@@ -48,7 +48,7 @@ namespace
 {
     bool _running = true;
 
-    bool InitCef()
+    bool InitHtmlEngine()
     {
         return html::Initialize();
 
@@ -126,10 +126,10 @@ namespace
             L"***\n\n",
             VERSION_PRODUCTSTR);
 
-        return platform::Initialize(VERSION_PRODUCTSTR) ||
-               InitScripting() || 
-               InitVideo() || 
-               InitCef();
+        return platform::Initialize(VERSION_PRODUCTSTR) &&
+               InitScripting() &&
+               InitVideo() &&
+               InitHtmlEngine();
     }
 
     void Shutdown()
