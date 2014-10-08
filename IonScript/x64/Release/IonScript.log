@@ -1,0 +1,11 @@
+﻿  stdafx.cpp
+  CallableSignature.cpp
+  ExecutionFrame.cpp
+  Expression.cpp
+  Lexer.cpp
+  Parser.cpp
+  RuntimeError.cpp
+  Common.cpp
+  Init.cpp
+  VirtualMachine.cpp
+  IonScript.vcxproj -> D:\IonDrive\x64\Release\IonScript.lib

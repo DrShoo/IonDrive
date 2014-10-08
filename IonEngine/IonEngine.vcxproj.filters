@@ -57,18 +57,6 @@
     <ClInclude Include="Defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Html\BrowserClient.h">
-      <Filter>Header Files\Html</Filter>
-    </ClInclude>
-    <ClInclude Include="Html\ChomeEmbeddedFramework.h">
-      <Filter>Header Files\Html</Filter>
-    </ClInclude>
-    <ClInclude Include="Html\HtmlRenderer.h">
-      <Filter>Header Files\Html</Filter>
-    </ClInclude>
-    <ClInclude Include="Html\RenderHandler.h">
-      <Filter>Header Files\Html</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -85,18 +73,6 @@
     </ClCompile>
     <ClCompile Include="Scripting\Scripting.cpp">
       <Filter>Source Files\Scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="Html\BrowserClient.cpp">
-      <Filter>Source Files\Html</Filter>
-    </ClCompile>
-    <ClCompile Include="Html\ChromeEmbeddedFramework.cpp">
-      <Filter>Source Files\Html</Filter>
-    </ClCompile>
-    <ClCompile Include="Html\HtmlRenderer.cpp">
-      <Filter>Source Files\Html</Filter>
-    </ClCompile>
-    <ClCompile Include="Html\RenderHandler.cpp">
-      <Filter>Source Files\Html</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

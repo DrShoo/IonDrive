@@ -66,7 +66,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\boost_1_56_0</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\boost_1_56_0</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -89,7 +94,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Cef;D:\boost_1_56_0;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -125,7 +131,8 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Cef;D:\boost_1_56_0;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -137,10 +144,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Defs.h" />
-    <ClInclude Include="Html\BrowserClient.h" />
-    <ClInclude Include="Html\ChomeEmbeddedFramework.h" />
-    <ClInclude Include="Html\HtmlRenderer.h" />
-    <ClInclude Include="Html\RenderHandler.h" />
     <ClInclude Include="IonEngine.h" />
     <ClInclude Include="Platform\Platform.h" />
     <ClInclude Include="Platform\Video.h" />
@@ -150,10 +153,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Html\BrowserClient.cpp" />
-    <ClCompile Include="Html\ChromeEmbeddedFramework.cpp" />
-    <ClCompile Include="Html\HtmlRenderer.cpp" />
-    <ClCompile Include="Html\RenderHandler.cpp" />
     <ClCompile Include="Platform\Platform.cpp" />
     <ClCompile Include="Platform\Video.cpp" />
     <ClCompile Include="Scripting\BoundVars.cpp" />

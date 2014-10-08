@@ -1,17 +1,17 @@
 #pragma once
 
-#define VERSION_FULL           1.0.0.354
+#define VERSION_FULL           1.0.0.360
 
 #define VERSION_BASEYEAR       0
-#define VERSION_DATE           "2014-09-24"
-#define VERSION_TIME           "16:54:21"
+#define VERSION_DATE           "2014-10-08"
+#define VERSION_TIME           "22:48:57"
 
 #define VERSION_MAJOR          1
 #define VERSION_MINOR          0
 #define VERSION_BUILDNO        0
-#define VERSION_EXTEND         354
+#define VERSION_EXTEND         360
 
-#define VERSION_FILE           1,0,0,354
-#define VERSION_PRODUCT        1,0,0,354
-#define VERSION_FILESTR        "1,0,0,354"
-#define VERSION_PRODUCTSTR     "1,0,0,354"
+#define VERSION_FILE           1,0,0,360
+#define VERSION_PRODUCT        1,0,0,360
+#define VERSION_FILESTR        "1,0,0,360"
+#define VERSION_PRODUCTSTR     "1,0,0,360"

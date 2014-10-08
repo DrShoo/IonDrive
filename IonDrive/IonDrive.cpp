@@ -3,7 +3,6 @@
 #include "version.h"
 
 namespace boundstate = ionengine::scripting::boundstate;
-namespace html = ionengine::html;
 namespace logger = common::logger;
 namespace platform = ionengine::platform;
 namespace scripting = ionengine::scripting;
@@ -50,18 +49,7 @@ namespace
 
     bool InitHtmlEngine()
     {
-        return html::Initialize();
-
-        /*
-
-        _renderHandler = new RenderHandler();
-        _renderHandler->Init(_mainWnd);
-        _browserClient = new BrowserClient(_renderHandler);
-
-        CefWindowInfo windowInfo;
-        windowInfo.SetAsOffScreen(nullptr);
-        CefBrowserSettings browserSettings;
-        _browser = CefBrowserHost::CreateBrowserSync(windowInfo, _browserClient.get(), "google.com", browserSettings, nullptr);*/
+        return true;
     }
 
     bool InitScripting()
@@ -100,8 +88,6 @@ namespace
             {
                 OnEvent(event);
             }
-
-            html::MessageLoop();
         }
 
         logger::Info(L"exiting from main loop");
@@ -134,8 +120,6 @@ namespace
 
     void Shutdown()
     {
-        html::Shutdown();
-
         video::Shutdown();
 
         scripting::Shutdown();
