@@ -19,7 +19,7 @@ namespace ionengine
         {
             logger::Info(L"evaluating ionscript file '%s'...", path);
 
-            const auto text = common::file::ReadAll(path);
+            const auto text = common::io::file::ReadAllSync(path);
 
             auto expr = _vm->EvaluateFile(path, text);
             if (!expr)

@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Parallel">
+      <UniqueIdentifier>{c0b0f20f-c294-4232-ab0d-4ebb03dc769f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Parallel">
+      <UniqueIdentifier>{aa750cf8-324b-40d5-9ec9-4e7f0e3a67ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Io">
+      <UniqueIdentifier>{a3e86751-fb17-4373-9468-84f4898123bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Io">
+      <UniqueIdentifier>{a10ded7e-101a-4d88-bae9-17b694081917}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -24,11 +36,20 @@
     <ClInclude Include="Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="File.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Defs.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Parallel\Message.h">
+      <Filter>Header Files\Parallel</Filter>
+    </ClInclude>
+    <ClInclude Include="Parallel\Server.h">
+      <Filter>Header Files\Parallel</Filter>
+    </ClInclude>
+    <ClInclude Include="Io\File.h">
+      <Filter>Header Files\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="Parallel\Scheduler.h">
+      <Filter>Header Files\Parallel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -38,8 +59,17 @@
     <ClCompile Include="Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="File.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Parallel\Message.cpp">
+      <Filter>Source Files\Parallel</Filter>
+    </ClCompile>
+    <ClCompile Include="Parallel\Server.cpp">
+      <Filter>Source Files\Parallel</Filter>
+    </ClCompile>
+    <ClCompile Include="Io\File.cpp">
+      <Filter>Source Files\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="Io\utf8_codecvt_facet.cpp">
+      <Filter>Source Files\Io</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
