@@ -6,7 +6,6 @@ namespace boundstate = ionengine::scripting::boundstate;
 namespace logger = common::logger;
 namespace platform = ionengine::platform;
 namespace scripting = ionengine::scripting;
-namespace video = ionengine::platform::video;
 
 namespace
 {
@@ -63,20 +62,6 @@ namespace
         return (bool)scripting::EvaluateFile(CFG_FILENAME);
     }
 
-    bool InitVideo()
-    {
-        const auto w = boundstate::GetVideoModeWidth();
-        const auto h = boundstate::GetVideoModeHeight();
-        const auto fullscreen = !boundstate::GetVideoModeWindowed();
-
-        if (!video::Initialize(w, h, fullscreen))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
     void MainLoop()
     {
         logger::Info(L"entering main loop...");
@@ -114,14 +99,11 @@ namespace
 
         return platform::Initialize(VERSION_PRODUCTSTR) &&
                InitScripting() &&
-               InitVideo() &&
                InitHtmlEngine();
     }
 
     void Shutdown()
     {
-        video::Shutdown();
-
         scripting::Shutdown();
 
         platform::Shutdown();

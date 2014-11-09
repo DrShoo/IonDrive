@@ -6,13 +6,7 @@ namespace ionengine
     {
         namespace boundstate
         {
-            const int GetVideoModeWidth();
-
-            const int GetVideoModeHeight();
-
-            const int GetVideoModeDepth();
-
-            const bool GetVideoModeWindowed();
+            const std::wstring &GetLogVerbocity();
         }
 
         bool BindState(ionscript::ILibraryContext &c);

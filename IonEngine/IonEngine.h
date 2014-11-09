@@ -4,4 +4,3 @@
 #include "Scripting/Scripting.h"
 
 #include "Platform/Platform.h"
-#include "Platform/Video.h"

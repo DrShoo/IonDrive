@@ -21,25 +21,7 @@ namespace ionengine
         namespace boundstate
         {
 
-            const int GetVideoModeWidth()
-            {
-                return _videoMode->ListAt(0)->IntegerGet();
-            }
-
-            const int GetVideoModeHeight()
-            {
-                return _videoMode->ListAt(1)->IntegerGet();
-            }
-
-            const int GetVideoModeDepth()
-            {
-                return _videoMode->ListAt(2)->IntegerGet();
-            }
-
-            const bool GetVideoModeWindowed()
-            {
-                return (_videoMode->ListAt(3)->SymbolGetId() == L"windowed");
-            }
+           
 
         }
 
@@ -51,10 +33,6 @@ namespace ionengine
 
             success = success &&
                 c.LibraryBindNativeVariable(L"log-verbosity", _logVerbosity, [](ExpressionSptr){
-            });
-
-            success = success &&
-                c.LibraryBindNativeVariable(L"video-mode", _videoMode, [](ExpressionSptr){
             });
 
             return success;
