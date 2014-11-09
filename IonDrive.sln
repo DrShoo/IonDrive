@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IonScript", "IonScript\IonScript.vcxproj", "{2D360A90-4658-4669-898F-8B0DB6EFB236}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -26,6 +26,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IonEngine", "IonEngine\IonE
 		{47F55C99-6AB6-40B9-85F2-649083386288} = {47F55C99-6AB6-40B9-85F2-649083386288}
 		{81CE8DAF-EBB2-4761-8E45-B71ABCCA8C68} = {81CE8DAF-EBB2-4761-8E45-B71ABCCA8C68}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL2main", "SDL2-2.0.3\VisualC\SDLmain\SDLmain_VS2013.vcxproj", "{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +111,18 @@ Global
 		{80EE25EE-4E0E-4671-826F-B847319F9E12}.Release|Win32.Build.0 = Release|Win32
 		{80EE25EE-4E0E-4671-826F-B847319F9E12}.Release|x64.ActiveCfg = Release|x64
 		{80EE25EE-4E0E-4671-826F-B847319F9E12}.Release|x64.Build.0 = Release|x64
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Debug|Win32.Build.0 = Debug|Win32
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Debug|x64.ActiveCfg = Debug|x64
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Debug|x64.Build.0 = Debug|x64
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Release|Win32.ActiveCfg = Release|Win32
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Release|Win32.Build.0 = Release|Win32
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Release|x64.ActiveCfg = Release|x64
+		{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

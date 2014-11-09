@@ -18,17 +18,10 @@ namespace
     void Shutdown();
 }
 
-int CALLBACK WinMain(
-    _In_  HINSTANCE hInstance,
-    _In_  HINSTANCE hPrevInstance,
-    _In_  LPSTR lpCmdLine,
-    _In_  int nCmdShow
-    )
+int main(int argc, char *argv[])
 {
-    hInstance;
-    hPrevInstance;
-    lpCmdLine;
-    nCmdShow;
+    UNUSED_PARAMETER(argc);
+    UNUSED_PARAMETER(argv);
 
     if (!Startup())
     {
