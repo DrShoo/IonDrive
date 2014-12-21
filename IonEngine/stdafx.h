@@ -15,6 +15,8 @@
 
 #include <sciter-x.h>
 
+#include <gl\GL.h>
+
 #include "../Common/Common.h"
 #include "../IonScript/IonScript.h"
 

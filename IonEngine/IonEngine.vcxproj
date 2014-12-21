@@ -147,6 +147,7 @@
     <ClInclude Include="Html\DocumentHost.h" />
     <ClInclude Include="IonEngine.h" />
     <ClInclude Include="Platform\Platform.h" />
+    <ClInclude Include="Platform\Video.h" />
     <ClInclude Include="Scripting\BoundVars.h" />
     <ClInclude Include="Scripting\Scripting.h" />
     <ClInclude Include="stdafx.h" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="Html\DocumentHost.cpp" />
     <ClCompile Include="Platform\Platform.cpp" />
+    <ClCompile Include="Platform\Video.cpp" />
     <ClCompile Include="Scripting\BoundVars.cpp" />
     <ClCompile Include="Scripting\Scripting.cpp" />
     <ClCompile Include="stdafx.cpp">
